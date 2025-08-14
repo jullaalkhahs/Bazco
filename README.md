@@ -1,2 +1,4 @@
 # Bazco
-AK game Jo car rasing ki Tarah Hoti or 
+bazco is a game there you can play car rasing and drive 
+there is more parts of this 
+the game is madden by bazco
