@@ -1,4 +1,55 @@
-# Bazco
-bazco is a game there you can play car rasing and drive 
-there is more parts of this 
-the game is madden by bazco
+#BazCo
+
+import pygame
+import sys
+
+Initialize Pygame
+pygame.init()
+
+Set up some constants
+WIDTH, HEIGHT = 800, 600
+CAR_SIZE = 50
+SPEED = 5
+
+Set up some colors
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+
+Set up the display
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
+Set up the car
+car_x, car_y = WIDTH / 2, HEIGHT - CAR_SIZE * 2
+car_speed_x = 0
+
+Game loop
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                car_speed_x = -SPEED
+            elif event.key == pygame.K_RIGHT:
+                car_speed_x = SPEED
+        elif event.type == pygame.KEYUP:
+            car_speed_x = 0
+
+    # Move the car
+    car_x += car_speed_x
+
+    # Ensure the car doesn't go off the screen
+    if car_x < 0:
+        car_x = 0
+    elif car_x > WIDTH - CAR_SIZE:
+        car_x = WIDTH - CAR_SIZE
+
+    # Draw everything
+    screen.fill(WHITE)
+    pygame.draw.rect(screen, RED, (car_x, car_y, CAR_SIZE, CAR_SIZE))
+    pygame.display.flip()
+
+    # Cap the frame rate
+    pygame.time.Clock().tick(60)
+    
